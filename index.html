@@ -10,6 +10,21 @@
       integrity="sha512-5fsy+3xG8N/1PV5MIJz9ZsWpkltijBI48gBzQ/Z2eVATePGHOkMIn+xTDHIfTZFVb9GMpflF2wOWItqxAP2oLQ=="
       crossorigin="anonymous"
     />
+    <style>
+        .success, .error {
+            color: white;
+            padding: 5px;
+            margin: 5px 0 15px 0;
+        }
+
+        .success {
+            background: green;
+        }
+
+        .error {
+            background: red;
+        }
+    </style>
     <title>Book List</title>
   </head>
   <body>
@@ -25,11 +40,26 @@
           <input type="text" id="author" class="u-full-width" />
         </div>
         <div>
-          <label for="isbn">ISBN</label>
+          <label for="isbn">ISBN#</label>
           <input type="text" id="isbn" class="u-full-width" />
         </div>
+        <div>
+            <input type="submit" value="Submit" class="u-full-width">
+        </div>
       </form>
+      <table class="u-full-width">
+          <thead>
+              <tr>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>ISBN</th>
+                  <th></th>
+              </tr>
+          </thead>
+          <tbody id="book-list"></tbody>
+      </table>
     </div>
+
     <script src="app.js"></script>
   </body>
 </html>
