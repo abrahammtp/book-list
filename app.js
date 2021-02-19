@@ -13,13 +13,12 @@ UI.prototype.addBookToList = function (book) {
     const list = document.querySelector("#book-list")
     // Create <tr> element
     const row = document.createElement("tr");
-    console.log(row);
     // Insert columns
     row.innerHTML = `
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.isbn}</td>
-        <td><a href="#" class"delete"</a>X</td>
+        <td><a href="#" class="delete"</a>X</td>
     `;
 
     list.appendChild(row);
@@ -43,6 +42,13 @@ UI.prototype.showAlert = function(message, className) {
         setTimeout(function() {
             document.querySelector(".alert").remove();
         }, 3000);
+};
+
+// Delete book
+UI.prototype.deleteBook = function (target) {
+    if(target.className === "delete") {
+        target.parentElement.parentElement.remove();
+    }
 }
 
 // Clear fields
@@ -52,7 +58,7 @@ UI.prototype.clearFields = function () {
     document.getElementById("isbn").value = "";
 }
 
-// Event listeners
+// Event listener for add book
 document.getElementById("book-form").addEventListener("submit", function (e) {
     // Get form values
     const title = document.querySelector("#title").value;
@@ -78,6 +84,21 @@ document.getElementById("book-form").addEventListener("submit", function (e) {
         ui.clearFields();
     }
 
+
+    e.preventDefault();
+})
+
+// Event listener for delete
+document.getElementById("book-list").addEventListener("click", function(e) {
+
+    // Instantiate UI
+    const ui = new UI();
+
+    // Delete book
+    ui.deleteBook(e.target);
+
+    // Show an alert
+    ui.showAlert("You have removed a book", "success")
 
     e.preventDefault();
 })
